@@ -1,0 +1,406 @@
+@font-face {
+  font-family: "Hologrow Inter";
+  src: url("/hologrow/pricing/fonts/inter-variable.woff2") format("woff2");
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  color-scheme: light;
+  --m-bg: #fbfcfc;
+  --m-ink: #10231c;
+  --m-btn-hover: #e0ff52;
+}
+
+html { scroll-behavior: smooth; }
+
+body,
+.marrow-theme {
+  font-family: "Hologrow Inter", system-ui, -apple-system, BlinkMacSystemFont,
+    "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+.marrow-theme main {
+  background-color: #fbfcfc;
+  background-image: url("/hologrow/pricing/_next/static/media/Mask Group.8311bc02.png");
+  background-repeat: no-repeat;
+  background-position: center -42px;
+  background-size: 100% auto;
+}
+
+.marrow-theme .marrow-site-page { background: transparent !important; }
+.marrow-theme .marrow-site-page > .marrow-section-grid { background: transparent !important; }
+
+.marrow-theme main .landing-page-split-hero {
+  padding-top: 96px !important;
+  padding-bottom: 104px !important;
+  background: transparent !important;
+}
+
+.marrow-theme .marrow-site-page > section.landing-page-split-hero:first-of-type {
+  background: transparent !important;
+}
+
+.landing-page-split-hero .marrow-hero-artwork { display: none; }
+
+.landing-page-split-hero > .relative {
+  text-align: left !important;
+}
+
+html body .marrow-theme main .landing-page-split-hero h1 {
+  max-width: 1080px !important;
+  margin-right: 0 !important;
+  margin-left: 0 !important;
+  font-size: clamp(2.25rem, 4vw, 3rem) !important;
+  line-height: 1.42 !important;
+  letter-spacing: -.02em !important;
+}
+
+.landing-page-split-hero h1 span { color: #7ba81f !important; }
+
+#plans {
+  position: relative;
+  overflow: hidden;
+  padding-top: 26px !important;
+  background: transparent !important;
+}
+
+#plans::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background-image: url("/hologrow/pricing/_next/static/media/Mask Group.8311bc02.png");
+  background-repeat: no-repeat;
+  background-position: center top;
+  background-size: cover;
+  opacity: 0;
+  mask-image: linear-gradient(to bottom, #000 0%, transparent 72%);
+}
+
+#plans > div { position: relative; }
+
+#plans h2.sr-only {
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+  margin: 0 !important;
+  overflow: visible !important;
+  clip: auto !important;
+  white-space: normal !important;
+  font-size: clamp(2rem, 3vw, 2.25rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  letter-spacing: -.02em !important;
+  color: #10231c !important;
+}
+
+#plans h2 + p {
+  max-width: 920px !important;
+  margin: 14px 0 0 !important;
+  text-align: left !important;
+  color: #53635b !important;
+}
+
+#plans h2 + p + div { margin-top: 32px !important; }
+
+.pricing-plan-card { isolation: isolate; }
+
+#plans .pricing-plan-card:not(.pricing-plan-card-featured) {
+  overflow: hidden !important;
+  border: 5px solid #fff !important;
+  border-radius: 16px !important;
+  box-shadow: 0 4px 10px rgba(96, 104, 73, .2) !important;
+}
+
+#plans .pricing-plan-card:not(.pricing-plan-card-featured) > div:first-child {
+  border-radius: 11px 11px 14px 14px !important;
+}
+
+/* Keep the featured plan's content on the same vertical grid as its peers. */
+#plans .pricing-plan-card-featured {
+  padding-top: 21px !important;
+}
+
+#plans .pricing-plan-card-featured > div:first-child {
+  top: 0 !important;
+  height: 21px !important;
+  line-height: 21px !important;
+}
+
+#plans .pricing-plan-card-featured > div:nth-child(2) > div:first-child {
+  padding-bottom: 24px !important;
+}
+
+#plans .pricing-plan-card li { font-weight: 400 !important; }
+
+#plans .pricing-plan-card:nth-child(1) li:nth-child(-n + 3),
+#plans .pricing-plan-card:nth-child(2) li:nth-child(-n + 3),
+#plans .pricing-plan-card:nth-child(3) li {
+  font-weight: 600 !important;
+}
+
+#plans .pricing-offer-row {
+  display: flex;
+  min-height: 40px;
+  align-items: baseline;
+  gap: 8px;
+  white-space: nowrap;
+}
+
+#plans .pricing-offer-current {
+  color: #131414;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 40px;
+  letter-spacing: -.025em;
+}
+
+#plans .pricing-offer-period {
+  color: #131414;
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+#plans .pricing-offer-regular {
+  color: #68756f;
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 20px;
+  text-decoration-thickness: 1px;
+}
+
+#plans .pricing-offer-savings {
+  align-self: center;
+  padding: 2px 6px;
+  border-radius: 999px;
+  background: rgba(208, 239, 52, .45);
+  color: #4f6b17;
+  font-size: 10px;
+  font-weight: 700;
+  line-height: 16px;
+  letter-spacing: 0;
+}
+
+#included,
+#credit-usage,
+#add-ons,
+#faq {
+  padding-top: 68px !important;
+  padding-bottom: 68px !important;
+}
+
+/* The first lower module opens without a horizontal rule or intersection dots. */
+#included {
+  border-top: 0 !important;
+}
+
+#included::before,
+#included::after {
+  display: none !important;
+}
+
+#included h2,
+#credit-usage h2,
+#add-ons h2,
+#faq h2 {
+  font-size: clamp(2rem, 3vw, 2.25rem) !important;
+  font-weight: 600 !important;
+  line-height: 1.4 !important;
+  letter-spacing: -.02em !important;
+}
+
+#included > div > div:first-child {
+  width: 100%;
+  max-width: none !important;
+}
+
+#included > div > div:first-child > p {
+  width: 100%;
+  max-width: none !important;
+}
+
+/* Fill the full content rail for the service-credit introduction. */
+#credit-usage > div > div:first-child,
+#credit-usage > div > div:first-child > p {
+  width: 100%;
+  max-width: none !important;
+}
+
+#included article,
+#add-ons article {
+  box-shadow: none !important;
+}
+
+/* Figma 124:2710 — important-number template adapted to the three add-ons. */
+#add-ons > div > div:first-child {
+  width: 100%;
+  max-width: none !important;
+  padding-top: 8px;
+}
+
+#add-ons > div > div:nth-child(2) {
+  margin-top: 30px !important;
+  gap: 12px !important;
+}
+
+#add-ons article {
+  min-height: 0 !important;
+  overflow: hidden;
+  padding: 29px 22.5px 22.5px !important;
+  border: .5px solid rgba(16, 35, 28, .14) !important;
+  border-radius: 16px !important;
+  background: #f4f6f6 !important;
+}
+
+#add-ons article > p:first-child {
+  color: #4f6b17 !important;
+  font-family: "Inter", system-ui, sans-serif !important;
+  font-size: 32px !important;
+  font-weight: 700 !important;
+  line-height: 1.2 !important;
+  letter-spacing: -1.12px !important;
+}
+
+#add-ons article h3 {
+  margin-top: 18px !important;
+  color: #10231c !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  line-height: 32px !important;
+  letter-spacing: -1px !important;
+}
+
+#add-ons article > p:last-child {
+  margin-top: 0 !important;
+  color: #68756f !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 18px !important;
+}
+
+/* Figma 124:3360 — compact service-card treatment for the six included services. */
+#included > div > div:nth-child(2) {
+  margin-top: 30px !important;
+  gap: 16px !important;
+}
+
+#included article {
+  position: relative;
+  display: flex;
+  min-height: 176px;
+  flex-direction: column;
+  padding: 20px 22.5px 18px !important;
+  border: .5px solid rgba(16, 35, 28, .14) !important;
+  border-radius: 16px !important;
+  background: #f4f6f6 !important;
+}
+
+#included article > div:first-child {
+  display: block !important;
+  padding-right: 38px;
+}
+
+#included article > div:first-child > span {
+  position: absolute;
+  top: 26px;
+  right: 22.5px;
+  display: block !important;
+  width: 20px !important;
+  height: 20px !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+
+#included article > div:first-child > span img {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+#included article h3 {
+  color: #10231c !important;
+  font-size: 18px !important;
+  font-weight: 500 !important;
+  line-height: 32px !important;
+  letter-spacing: -1px !important;
+}
+
+#included article > p:nth-child(2) {
+  margin-top: 24px !important;
+  color: #10231c !important;
+  font-size: 12px !important;
+  font-weight: 500 !important;
+  line-height: 18px !important;
+}
+
+#included article > p:nth-child(3) {
+  margin-top: 8px !important;
+  color: #68756f !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 18px !important;
+}
+
+#credit-usage table { background: rgba(255, 255, 255, .7); }
+
+#faq details { background: transparent; }
+#faq details > div {
+  width: 100%;
+  max-width: none !important;
+  padding-right: 60px !important;
+}
+
+#faq summary:focus-visible {
+  border-radius: 6px;
+  outline: 3px solid rgba(163, 194, 10, .38);
+  outline-offset: 2px;
+}
+
+#get-started { margin-top: 38px; }
+
+@media (min-width: 640px) {
+  .marrow-theme main .landing-page-split-hero { padding-top: 112px !important; }
+}
+
+@media (min-width: 1024px) {
+  .marrow-theme main .landing-page-split-hero { padding-top: 128px !important; }
+  /* Start the page rails below the complete pricing first fold. */
+  .marrow-theme .marrow-section-grid::before,
+  .marrow-theme .marrow-section-grid::after {
+    top: var(--pricing-rail-start, 18px) !important;
+  }
+  #plans .grid.md\:grid-cols-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  #included > div > div:nth-child(2) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  #plans .grid.md\:grid-cols-3 { grid-template-columns: minmax(0, 1fr); }
+}
+
+@media (max-width: 639px) {
+  #plans .pricing-offer-row {
+    flex-wrap: wrap;
+    column-gap: 7px;
+    row-gap: 0;
+  }
+
+  #included article {
+    min-height: 184px;
+    padding-right: 20px !important;
+    padding-left: 20px !important;
+  }
+
+  #included article > div:first-child > span { right: 20px; }
+
+  #faq details > div { padding-right: 24px !important; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
