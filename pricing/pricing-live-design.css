@@ -32,8 +32,8 @@ body,
 .marrow-theme .marrow-site-page > .marrow-section-grid { background: transparent !important; }
 
 .marrow-theme main .landing-page-split-hero {
-  padding-top: 96px !important;
-  padding-bottom: 104px !important;
+  padding-top: 128px !important;
+  padding-bottom: 0 !important;
   background: transparent !important;
 }
 
@@ -47,11 +47,21 @@ body,
   text-align: left !important;
 }
 
+.landing-page-split-hero > .relative > p:first-child {
+  color: rgba(16, 35, 28, .65) !important;
+  font-size: 11px !important;
+  font-weight: 600 !important;
+  line-height: 17.38px !important;
+  letter-spacing: 2px !important;
+}
+
 html body .marrow-theme main .landing-page-split-hero h1 {
   max-width: 1080px !important;
+  margin-top: 14px !important;
   margin-right: 0 !important;
   margin-left: 0 !important;
   font-size: clamp(2.25rem, 4vw, 3rem) !important;
+  font-weight: 700 !important;
   line-height: 1.42 !important;
   letter-spacing: -.02em !important;
 }
@@ -61,7 +71,8 @@ html body .marrow-theme main .landing-page-split-hero h1 {
 #plans {
   position: relative;
   overflow: hidden;
-  padding-top: 26px !important;
+  padding-top: 24px !important;
+  padding-bottom: 96px !important;
   background: transparent !important;
 }
 
@@ -81,28 +92,28 @@ html body .marrow-theme main .landing-page-split-hero h1 {
 #plans > div { position: relative; }
 
 #plans h2.sr-only {
-  position: static !important;
-  width: auto !important;
-  height: auto !important;
-  margin: 0 !important;
-  overflow: visible !important;
-  clip: auto !important;
-  white-space: normal !important;
-  font-size: clamp(2rem, 3vw, 2.25rem) !important;
-  font-weight: 600 !important;
-  line-height: 1.4 !important;
-  letter-spacing: -.02em !important;
-  color: #10231c !important;
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
 }
 
 #plans h2 + p {
-  max-width: 920px !important;
-  margin: 14px 0 0 !important;
+  max-width: 1040px !important;
+  margin: 0 !important;
+  font-size: 16px !important;
+  line-height: 28px !important;
+  letter-spacing: -.24px !important;
   text-align: left !important;
   color: #53635b !important;
 }
 
-#plans h2 + p + div { margin-top: 32px !important; }
+#plans h2 + p + div { margin-top: 50px !important; }
 
 .pricing-plan-card { isolation: isolate; }
 
@@ -181,6 +192,12 @@ html body .marrow-theme main .landing-page-split-hero h1 {
   font-weight: 700;
   line-height: 16px;
   letter-spacing: 0;
+}
+
+@media (min-width: 1024px) {
+  .marrow-theme[lang="en"] #plans .pricing-plan-card h3 + p {
+    min-height: 72px;
+  }
 }
 
 #included,
@@ -361,11 +378,17 @@ html body .marrow-theme main .landing-page-split-hero h1 {
 #get-started { margin-top: 38px; }
 
 @media (min-width: 640px) {
-  .marrow-theme main .landing-page-split-hero { padding-top: 112px !important; }
+  .marrow-theme main .landing-page-split-hero { padding-top: 160px !important; }
+  #plans { padding-bottom: 128px !important; }
+  #plans h2 + p {
+    font-size: 18px !important;
+    line-height: 32px !important;
+  }
 }
 
 @media (min-width: 1024px) {
-  .marrow-theme main .landing-page-split-hero { padding-top: 128px !important; }
+  .marrow-theme main .landing-page-split-hero { padding-top: 112px !important; }
+  #plans { padding-bottom: 100px !important; }
   /* Start the page rails below the complete pricing first fold. */
   .marrow-theme .marrow-section-grid::before,
   .marrow-theme .marrow-section-grid::after {
