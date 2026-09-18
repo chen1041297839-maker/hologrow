@@ -94,25 +94,14 @@ header.static-header {
 header.static-header > div {
   box-sizing: border-box;
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  justify-content: space-between;
-  gap: 16px;
+  gap: 8px 16px;
   width: 100%;
   max-width: 1180px;
-  height: 64px;
+  min-height: 64px;
+  height: auto;
   margin: 0 auto;
-}
-
-.static-header-left,
-.static-header-right {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  min-width: 0;
-}
-
-.static-header-left {
-  gap: 32px;
 }
 
 .static-logo img {
@@ -122,7 +111,8 @@ header.static-header > div {
 }
 
 header.static-header .static-nav {
-  display: none;
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
   gap: 2px;
   font-size: 14px;
@@ -149,7 +139,7 @@ header.static-header .static-nav a[aria-current="page"] {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-left: 0;
+  margin-left: auto;
   color: rgba(16, 35, 28, 0.55);
   font-size: 13px;
   font-weight: 500;
@@ -161,7 +151,7 @@ header.static-header .static-nav a[aria-current="page"] {
 }
 
 .static-cta {
-  display: none;
+  display: inline-flex;
   align-items: center;
   min-height: 36px;
   padding: 8px 16px;
@@ -180,64 +170,10 @@ header.static-header .static-nav a[aria-current="page"] {
   transform: translateY(-1px);
 }
 
-.static-menu {
-  position: relative;
-}
-
-.static-menu summary {
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border-radius: 6px;
-  list-style: none;
-  cursor: pointer;
-  color: var(--hg-ink);
-}
-
-.static-menu summary::-webkit-details-marker {
-  display: none;
-}
-
-.static-menu nav {
-  position: absolute;
-  top: calc(100% + 8px);
-  right: 0;
-  z-index: 60;
-  display: grid;
-  min-width: 180px;
-  padding: 8px;
-  border: 0.5px solid rgba(16, 35, 28, 0.14);
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 18px 50px -24px rgba(16, 35, 28, 0.35);
-}
-
-.static-menu nav a {
-  padding: 10px 12px;
-  border-radius: 8px;
-  color: rgba(0, 0, 0, 0.6);
-  font-size: 14px;
-}
-
-.static-menu nav a:hover {
-  background: #f3f6f4;
-  color: #173e36;
-}
-
-@media (min-width: 640px) {
-  .static-cta {
-    display: inline-flex;
-  }
-}
-
-@media (min-width: 1200px) {
-  header.static-header .static-nav {
-    display: flex;
-  }
-
-  .static-menu {
-    display: none;
+@media (min-width: 900px) {
+  header.static-header > div {
+    flex-wrap: nowrap;
+    height: 64px;
   }
 }
 
@@ -264,53 +200,38 @@ footer.static-footer {
 footer.static-footer > div {
   box-sizing: border-box;
   display: flex;
-  flex-direction: column;
-  gap: 40px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px 40px;
   width: 100%;
   max-width: 1180px;
   margin: 0 auto;
 }
 
-.static-footer-brand {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 24px;
-  max-width: 220px;
-}
-
-.static-footer-brand img {
+footer.static-footer img {
+  display: block;
   width: 132px;
   height: 29px;
   object-fit: contain;
   object-position: left;
 }
 
-.static-footer-brand p {
-  margin: 0;
-  max-width: 184px;
+footer.static-footer span {
+  max-width: 220px;
   color: var(--hg-muted);
   font-size: 12.5px;
   font-weight: 400;
   line-height: 19.38px;
 }
 
-.static-footer-cols {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 32px;
+footer.static-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
 }
 
-.static-footer-cols h2 {
-  margin: 0 0 8px;
-  color: rgba(16, 35, 28, 0.65);
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 17.38px;
-  letter-spacing: 1px;
-}
-
-.static-footer-cols a {
+footer.static-footer nav a {
   display: inline-flex;
   align-items: center;
   min-height: 44px;
@@ -320,44 +241,18 @@ footer.static-footer > div {
   line-height: 20px;
 }
 
-.static-footer-cols a:hover {
+footer.static-footer nav a:hover {
   color: #789188;
 }
 
 @media (min-width: 640px) {
-  .static-footer-cols {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .static-footer-cols a {
+  footer.static-footer nav a {
     min-height: 0;
-    padding-block: 4px;
-  }
-}
-
-@media (min-width: 1024px) {
-  footer.static-footer > div {
-    flex-direction: row;
-    gap: 44px;
-  }
-
-  .static-footer-brand {
-    flex: 1;
-  }
-
-  .static-footer-cols {
-    display: flex;
-    gap: 44px;
-  }
-
-  .static-footer-cols > div {
-    width: 150px;
   }
 }
 
 header.static-header a:focus-visible,
-footer.static-footer a:focus-visible,
-.static-menu summary:focus-visible {
+footer.static-footer a:focus-visible {
   outline: 2px solid #597e33;
   outline-offset: 3px;
 }
