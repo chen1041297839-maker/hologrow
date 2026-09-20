@@ -74,9 +74,16 @@ header.static-header {
   top: 0;
   z-index: 50;
   padding: 0 20px;
-  border-bottom: 0.5px solid rgba(0, 0, 0, 0.06);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
   background: rgba(255, 255, 255, 0.95);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei UI", "Microsoft YaHei", sans-serif;
   backdrop-filter: blur(24px);
+}
+
+header.static-header *,
+header.static-header *::before,
+header.static-header *::after {
+  box-sizing: border-box;
 }
 
 @media (min-width: 640px) {
@@ -94,14 +101,21 @@ header.static-header {
 header.static-header > div {
   box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   align-items: center;
-  gap: 8px 16px;
+  gap: 12px;
   width: 100%;
   max-width: 1180px;
   min-height: 64px;
-  height: auto;
+  height: 64px;
   margin: 0 auto;
+}
+
+.static-logo {
+  display: flex;
+  flex: none;
+  align-items: center;
+  margin-right: 20px;
 }
 
 .static-logo img {
@@ -111,7 +125,7 @@ header.static-header > div {
 }
 
 header.static-header .static-nav {
-  display: flex;
+  display: none;
   flex-wrap: wrap;
   align-items: center;
   gap: 2px;
@@ -124,9 +138,17 @@ header.static-header .static-nav {
 header.static-header .static-nav a {
   display: inline-flex;
   align-items: center;
+  gap: 4px;
+  height: 36px;
   min-height: 36px;
   padding: 0 12px;
   border-radius: 6px;
+}
+
+header.static-header .static-nav svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
 }
 
 header.static-header .static-nav a:hover,
@@ -137,21 +159,40 @@ header.static-header .static-nav a[aria-current="page"] {
 
 .static-languages {
   display: flex;
+  width: 94px;
+  height: 36px;
   align-items: center;
-  gap: 8px;
   margin-left: auto;
-  color: rgba(16, 35, 28, 0.55);
-  font-size: 13px;
-  font-weight: 500;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 6px 18px -14px rgba(23, 62, 54, 0.55);
+  color: #173e36;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 16px;
 }
 
-.static-languages a[aria-current="page"] {
-  color: var(--hg-ink);
-  font-weight: 600;
+.static-languages a {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+}
+
+.static-languages svg {
+  width: 14px;
+  height: 14px;
+  flex: none;
+  color: rgba(23, 62, 54, 0.65);
 }
 
 .static-cta {
   display: inline-flex;
+  height: 36px;
   align-items: center;
   min-height: 36px;
   padding: 8px 16px;
@@ -163,6 +204,12 @@ header.static-header .static-nav a[aria-current="page"] {
   line-height: 20px;
   white-space: nowrap;
   transition: background 0.15s ease, transform 0.15s ease;
+}
+
+@media (min-width: 1280px) {
+  header.static-header .static-nav {
+    display: flex;
+  }
 }
 
 .static-cta:hover {
@@ -200,13 +247,30 @@ footer.static-footer {
 footer.static-footer > div {
   box-sizing: border-box;
   display: flex;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: 24px 40px;
   width: 100%;
   max-width: 1180px;
+  flex-flow: column nowrap;
+  align-items: stretch;
+  justify-content: flex-start;
+  gap: 40px;
   margin: 0 auto;
+}
+
+footer.static-footer .static-footer-brand {
+  display: flex;
+  min-width: 0;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 24px;
+}
+
+footer.static-footer .static-footer-brand > a {
+  display: flex;
+  width: 132px;
+  min-height: 44px;
+  align-items: center;
+  margin: 0;
 }
 
 footer.static-footer img {
@@ -215,10 +279,11 @@ footer.static-footer img {
   height: 29px;
   object-fit: contain;
   object-position: left;
+  transform: translateX(-3px);
 }
 
 footer.static-footer span {
-  max-width: 220px;
+  max-width: 184px;
   color: var(--hg-muted);
   font-size: 12.5px;
   font-weight: 400;
@@ -226,9 +291,10 @@ footer.static-footer span {
 }
 
 footer.static-footer nav {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px 24px;
+  display: grid;
+  min-width: 0;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 32px;
 }
 
 footer.static-footer nav a {
@@ -246,8 +312,37 @@ footer.static-footer nav a:hover {
 }
 
 @media (min-width: 640px) {
+  footer.static-footer > div {
+    padding-inline: 32px;
+  }
+
+  footer.static-footer .static-footer-brand > a {
+    min-height: 29px;
+  }
+
   footer.static-footer nav a {
     min-height: 0;
+  }
+}
+
+@media (min-width: 1024px) {
+  footer.static-footer > div {
+    flex-direction: row;
+    gap: 44px;
+  }
+
+  footer.static-footer .static-footer-brand {
+    height: 105px;
+  }
+
+  footer.static-footer nav {
+    display: flex;
+    gap: 44px;
+  }
+
+  footer.static-footer nav a {
+    width: 150px;
+    align-items: flex-start;
   }
 }
 
@@ -637,5 +732,1262 @@ footer.static-footer a:focus-visible {
   .static-cta:hover,
   .ie-button:hover {
     transform: none;
+  }
+}
+
+/* Index overview redesign. Keep the existing HTML, copy, links, and module order intact. */
+.ie-overview {
+  padding: 112px 0 0;
+  overflow: hidden;
+  background-color: #fff;
+  background-image: url("./assets/product/marrow/Mask Group.png");
+  background-position: center -3.3vw;
+  background-repeat: no-repeat;
+  background-size: 100% auto;
+}
+
+.ie-overview > .ie-container > h1 {
+  width: 100%;
+  max-width: none;
+}
+
+.ie-overview > .ie-container > p:not(.ie-eyebrow) {
+  width: 100%;
+  max-width: none;
+  margin-bottom: 48px;
+}
+
+.ie-overview .ie-grid3 {
+  align-items: stretch;
+  gap: 16px;
+}
+
+.ie-overview .ie-overview-card {
+  position: relative;
+  min-height: 374px;
+  overflow: visible;
+  padding: 26px 24px 22px;
+  border: 0.5px solid rgba(16, 35, 28, 0.16);
+  border-radius: 16px;
+  background: rgba(248, 250, 249, 0.9);
+  box-shadow: none;
+  backdrop-filter: blur(12px);
+  transition: border-color 160ms ease, background-color 160ms ease, transform 160ms ease;
+}
+
+.ie-overview .ie-overview-card:hover {
+  border-color: rgba(120, 150, 0, 0.52);
+  background: #fff;
+  transform: translateY(-3px);
+}
+
+.ie-overview .ie-overview-card .ie-level {
+  color: rgba(16, 35, 28, 0.58);
+  font-family: var(--hg-mono);
+  font-size: 11px;
+  font-weight: 550;
+  line-height: 17.38px;
+  letter-spacing: 1px;
+}
+
+.ie-overview .ie-overview-card h2 {
+  margin-top: 22px;
+  font-size: 22px !important;
+  font-weight: 550 !important;
+  line-height: 32px !important;
+  letter-spacing: -0.8px !important;
+}
+
+.ie-overview .ie-overview-card p {
+  min-height: 36px;
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.ie-overview .ie-overview-card ol {
+  display: grid;
+  gap: 6px;
+  width: 100%;
+  margin: 18px 0 20px;
+  padding: 17px 0 0 18px;
+  border-top: 0.5px solid rgba(16, 35, 28, 0.12);
+  color: #66766d;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.ie-overview .ie-overview-card li::marker {
+  color: #789600;
+  font-family: var(--hg-mono);
+  font-size: 9px;
+}
+
+.ie-overview .ie-overview-card > .ie-button {
+  margin-top: auto;
+}
+
+.ie-overview .ie-overview-card code {
+  margin-top: 13px;
+  color: rgba(16, 35, 28, 0.42);
+  font-family: var(--hg-mono);
+  font-size: 9px;
+  line-height: 15px;
+}
+
+.ie-overview .ds-collection,
+.ie-overview .ai-overview-collection {
+  position: relative;
+  isolation: isolate;
+  left: 50%;
+  width: calc(100vw - 40px);
+  max-width: 1180px;
+  margin-top: 0;
+  padding: 68px 0;
+  border-top: 0;
+  transform: translateX(-50%);
+}
+
+@media (min-width: 640px) {
+  .ie-overview .ds-collection,
+  .ie-overview .ai-overview-collection {
+    width: calc(100vw - 64px);
+  }
+}
+
+@media (min-width: 1024px) {
+  .ie-overview .ds-collection,
+  .ie-overview .ai-overview-collection {
+    width: calc(100vw - 80px);
+  }
+}
+
+.ie-overview .ds-collection {
+  margin-top: 100px;
+}
+
+.ie-overview .ds-collection::before,
+.ie-overview .ai-overview-collection::before {
+  position: absolute;
+  z-index: -1;
+  inset-block: 0;
+  left: 50%;
+  width: 100vw;
+  background: rgb(251, 252, 252);
+  content: "";
+  transform: translateX(-50%);
+}
+
+.ie-overview .ai-overview-collection::before {
+  border-top: 0.5px solid rgba(16, 35, 28, 0.1);
+}
+
+.ie-overview .ie-section-head {
+  display: flex;
+  width: 100%;
+  max-width: 940px;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 45px;
+  padding-top: 8px;
+}
+
+.ie-overview .ie-section-head > .ie-eyebrow {
+  margin: 0;
+}
+
+.ie-overview .ds-collection .ie-section-head > .ie-eyebrow,
+.ie-overview .ai-overview-collection .ie-section-head > .ie-eyebrow {
+  color: rgba(16, 35, 28, 0.65);
+  font-family: var(--hg-mono);
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 17.38px;
+  letter-spacing: 1px;
+  text-transform: none;
+}
+
+.ie-overview .ie-section-head > h2 {
+  max-width: 940px;
+  margin: 0;
+}
+
+.ie-overview .ie-section-head > p:not(.ie-eyebrow) {
+  max-width: 760px;
+  margin: 0;
+  padding: 2px 0 0;
+  color: #68756f;
+  font-size: 16px;
+  line-height: 26px;
+}
+
+.ie-overview .ds-source-links {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.ie-overview .ds-source-links a {
+  position: relative;
+  display: grid;
+  min-height: 146px;
+  overflow: hidden;
+  isolation: isolate;
+  grid-template-columns: 38px 1fr 14px;
+  grid-template-rows: 38px 1fr;
+  align-content: space-between;
+  align-items: start;
+  gap: 16px 8px;
+  padding: 20px 18px;
+  border: 0.5px solid rgba(16, 35, 28, 0.13);
+  border-radius: 14px;
+  background: #fff;
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 20px;
+  transition: border-color 500ms ease;
+}
+
+.ie-overview .ds-source-links a::before {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: url("./assets/product/marrow/accent-surface-background.png") center / cover no-repeat;
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 500ms ease;
+}
+
+.ie-overview .ds-source-links a:hover {
+  border-color: rgba(163, 194, 10, 0.35);
+}
+
+.ie-overview .ds-source-links a:hover::before {
+  opacity: 1;
+}
+
+.ie-overview .ds-source-links img {
+  position: relative;
+  z-index: 1;
+  width: 38px;
+  height: 38px;
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.ie-overview .ds-source-links a > span:nth-of-type(1) {
+  position: relative;
+  z-index: 1;
+  grid-column: 1 / -1;
+  grid-row: 2;
+  align-self: end;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  transition: color 100ms ease;
+}
+
+.ie-overview .ds-source-links a > span:last-child {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 24px;
+  height: 24px;
+  place-items: center;
+  grid-column: 3;
+  grid-row: 1;
+  margin-left: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0);
+  color: #789600;
+  transform: none;
+  opacity: 1;
+  transition: color 500ms ease;
+}
+
+.ie-overview .ds-source-links a:hover > span:nth-of-type(1) {
+  color: #10231c;
+}
+
+.ie-overview .ds-source-links a:hover > span:last-child {
+  background: transparent;
+  color: #789600;
+  transform: none;
+  opacity: 1;
+}
+
+.ie-overview .ai-overview-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-top: 0;
+  counter-reset: ai-overview;
+}
+
+.ie-overview .ai-overview-grid > a {
+  position: relative;
+  min-height: 220px;
+  padding: 22px;
+  overflow: hidden;
+  isolation: isolate;
+  border: 0.5px solid rgba(16, 35, 28, 0.13);
+  border-radius: 16px;
+  background: #f4f6f6;
+  transition: border-color 500ms ease;
+  counter-increment: ai-overview;
+}
+
+.ie-overview .ai-overview-grid > a::after {
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  background: url("./assets/product/marrow/use-case-highlight-background.png") center / cover no-repeat;
+  content: "";
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 100ms ease;
+}
+
+.ie-overview .ai-overview-grid > a::before {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: 32px;
+  height: 32px;
+  place-items: center;
+  border: 0.5px solid rgba(16, 35, 28, 0.12);
+  border-radius: 9px;
+  background: #fff;
+  color: rgba(16, 35, 28, 0.58);
+  content: counter(ai-overview, decimal-leading-zero);
+  font-family: var(--hg-mono);
+  font-size: 9px;
+  font-weight: 600;
+}
+
+.ie-overview .ai-overview-grid > a:hover {
+  border-color: rgba(163, 194, 10, 0.6);
+}
+
+.ie-overview .ai-overview-grid > a:hover::after {
+  opacity: 1;
+}
+
+.ie-overview .ai-overview-grid strong {
+  position: relative;
+  z-index: 1;
+  margin-top: 22px;
+  font-size: 20px;
+  font-weight: 550;
+  line-height: 30px;
+  letter-spacing: -0.6px;
+  transition: color 100ms ease;
+}
+
+.ie-overview .ai-overview-grid p {
+  position: relative;
+  z-index: 1;
+  margin: 7px 0 20px;
+  font-size: 12px;
+  line-height: 18px;
+  transition: color 100ms ease;
+}
+
+.ie-overview .ai-overview-grid span {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  color: #173e36;
+  font-size: 12px;
+  font-weight: 600;
+  transition: color 100ms ease;
+}
+
+.ie-overview .ai-overview-grid > a:hover strong,
+.ie-overview .ai-overview-grid > a:hover span {
+  color: #fff;
+}
+
+.ie-overview .ai-overview-grid > a:hover p {
+  color: rgba(244, 246, 246, 0.9);
+}
+
+.ie-overview .ie-note.ie-under-grid {
+  margin-top: 30px !important;
+}
+
+.ie-overview > .ie-container > .ie-text-link {
+  min-height: 44px;
+  margin-bottom: 72px;
+  padding: 10px 0;
+}
+
+@media (max-width: 1023px) {
+  .ie-overview .ds-source-links {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 899px) {
+  .ie-overview {
+    padding-top: 128px;
+  }
+
+  .ie-overview .ie-grid3 {
+    grid-template-columns: 1fr;
+  }
+
+  .ie-overview .ie-overview-card {
+    min-height: 0;
+  }
+
+  .ie-overview .ie-section-head {
+    max-width: 940px;
+  }
+
+  .ie-overview .ie-section-head > p:not(.ie-eyebrow) {
+    padding: 2px 0 0;
+  }
+
+  .ie-overview .ds-source-links,
+  .ie-overview .ai-overview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1280px) {
+  .ie-overview .ds-collection::after,
+  .ie-overview .ai-overview-collection::after {
+    position: absolute;
+    z-index: 3;
+    top: -9px;
+    left: 50%;
+    width: calc(min(1264px, 100vw) + 18px);
+    height: calc(100% + 27px);
+    content: "";
+    pointer-events: none;
+    transform: translateX(-50%);
+  }
+
+  .ie-overview .ds-collection::after {
+    background:
+      linear-gradient(rgba(16, 35, 28, 0.1), rgba(16, 35, 28, 0.1)) 9px 27px / 0.5px calc(100% - 27px) no-repeat,
+      linear-gradient(rgba(16, 35, 28, 0.1), rgba(16, 35, 28, 0.1)) calc(100% - 9px) 27px / 0.5px calc(100% - 27px) no-repeat;
+  }
+
+  .ie-overview .ai-overview-collection::after {
+    /* Continue the rails beneath the following CTA background. The overlap
+       removes any visible gap while the later CTA still masks the excess. */
+    height: calc(100% + 27px);
+    background:
+      radial-gradient(circle, rgba(16, 35, 28, 0.65) 0, rgba(16, 35, 28, 0.65) 1px, rgb(251, 252, 252) 1.1px) left top / 18px 18px no-repeat,
+      radial-gradient(circle, rgba(16, 35, 28, 0.65) 0, rgba(16, 35, 28, 0.65) 1px, rgb(251, 252, 252) 1.1px) right top / 18px 18px no-repeat,
+      linear-gradient(rgba(16, 35, 28, 0.1), rgba(16, 35, 28, 0.1)) 9px 27px / 0.5px calc(100% - 27px) no-repeat,
+      linear-gradient(rgba(16, 35, 28, 0.1), rgba(16, 35, 28, 0.1)) calc(100% - 9px) 27px / 0.5px calc(100% - 27px) no-repeat;
+  }
+}
+
+@media (max-width: 639px) {
+  body:has(.ie-overview) header.static-header .static-nav,
+  body:has(.ie-overview) header.static-header .static-cta {
+    display: none;
+  }
+
+  body:has(.ie-overview) header.static-header > div {
+    flex-wrap: nowrap;
+    min-height: 64px;
+  }
+
+  .ie-overview {
+    padding-top: 96px;
+  }
+
+  .ie-overview > .ie-container > p:not(.ie-eyebrow) {
+    margin-bottom: 34px;
+  }
+
+  .ie-overview .ie-overview-card {
+    padding: 24px 22px 21px;
+  }
+
+  .ie-overview .ie-overview-card p {
+    min-height: 0;
+  }
+
+  .ie-overview .ds-collection {
+    margin-top: 72px;
+  }
+
+  .ie-overview .ds-collection,
+  .ie-overview .ai-overview-collection {
+    padding: 68px 0;
+  }
+
+  .ie-overview .ds-source-links,
+  .ie-overview .ai-overview-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .ie-overview .ds-source-links a {
+    min-height: 92px;
+    grid-template-columns: 38px minmax(0, 1fr) 14px;
+    grid-template-rows: 1fr;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 18px;
+  }
+
+  .ie-overview .ds-source-links img {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .ie-overview .ds-source-links a > span:nth-of-type(1) {
+    grid-column: 2;
+    grid-row: 1;
+    align-self: center;
+  }
+
+  .ie-overview .ds-source-links a > span:last-child {
+    grid-column: 3;
+    grid-row: 1;
+  }
+
+  .ie-overview .ai-overview-grid > a {
+    min-height: 196px;
+  }
+
+  .ie-overview > .ie-container > .ie-text-link {
+    margin-bottom: 56px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ie-overview .ie-overview-card,
+  .ie-overview .ds-source-links a,
+  .ie-overview .ai-overview-grid > a {
+    transition: none;
+  }
+
+  .ie-overview .ie-overview-card:hover,
+  .ie-overview .ds-source-links a:hover,
+  .ie-overview .ai-overview-grid > a:hover {
+    transform: none;
+  }
+}
+
+/* Reuse the live footer CTA treatment without changing the existing review copy. */
+.ie-overview .ie-footer-cta {
+  position: relative;
+  left: 50%;
+  display: grid;
+  width: 100vw;
+  min-height: 286px;
+  overflow: hidden;
+  box-sizing: border-box;
+  grid-template-columns: 1fr;
+  align-items: center;
+  gap: 32px;
+  margin-left: -50vw;
+  padding: 42px max(20px, calc((100vw - 1180px) / 2));
+  border-top: 0.5px solid rgba(16, 35, 28, 0.08);
+  border-bottom: 0.5px solid rgba(16, 35, 28, 0.08);
+  background: #fff;
+  isolation: isolate;
+}
+
+.ie-overview .ie-footer-cta::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  background: url("./assets/product/marrow/Section.png") center / cover no-repeat;
+  content: "";
+  pointer-events: none;
+}
+
+.ie-overview .ie-footer-cta .ie-note.ie-under-grid {
+  max-width: 800px;
+  margin: 0 !important;
+  color: #485d32;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 28px;
+}
+
+.ie-overview .ie-footer-cta .ie-text-link {
+  display: inline-flex;
+  width: max-content;
+  min-width: 170px;
+  height: 48px;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  padding: 12px 20px;
+  border-radius: 10px;
+  background: var(--hg-lime);
+  color: var(--hg-ink);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 24px;
+  transition: background-color 160ms ease, transform 160ms ease;
+}
+
+.ie-overview .ie-footer-cta .ie-text-link:hover {
+  background: var(--hg-lime-hover);
+  transform: translateY(-2px);
+}
+
+@media (min-width: 640px) {
+  .ie-overview .ie-footer-cta {
+    padding: 50px max(32px, calc((100vw - 1180px) / 2));
+  }
+}
+
+@media (min-width: 900px) {
+  .ie-overview .ie-footer-cta {
+    grid-template-columns: minmax(0, 800px) auto;
+    justify-content: space-between;
+    gap: 64px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .ie-overview .ie-footer-cta {
+    padding: 54px max(40px, calc((100vw - 1180px) / 2));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ie-overview .ie-footer-cta .ie-text-link {
+    transition: none;
+  }
+
+  .ie-overview .ie-footer-cta .ie-text-link:hover {
+    transform: none;
+  }
+}
+
+/* Localized detail pages: keep hierarchy in the breadcrumb and use the
+   same full-width, vertically composed hero treatment in every language. */
+.integration-page > .ie-review-bar {
+  display: none;
+}
+
+.integration-page .ie-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  padding: 0 0 68px;
+  border-bottom: 0.5px solid rgba(16, 35, 28, 0.1);
+  background-color: rgb(251, 252, 252);
+  background-image: none;
+}
+
+.integration-page .ie-hero::before {
+  position: absolute;
+  z-index: 0;
+  inset: -84px 0 0;
+  background-color: rgb(251, 252, 252);
+  background-image: url("./assets/product/marrow/Mask Group.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+  content: "";
+  pointer-events: none;
+}
+
+.integration-page .ie-hero > .ie-container {
+  position: relative;
+  z-index: 1;
+}
+
+.integration-page .ie-breadcrumb {
+  display: flex;
+  min-height: 64px;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 0;
+  color: rgba(16, 35, 28, 0.58);
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.integration-page .ie-breadcrumb > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.integration-page .ie-breadcrumb a {
+  color: #173e36;
+  text-underline-offset: 4px;
+}
+
+.integration-page .ie-breadcrumb a:hover {
+  text-decoration: underline;
+}
+
+.integration-page .ie-hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) !important;
+  align-items: start;
+  gap: 40px;
+  margin-top: 28px;
+  padding: 0;
+}
+
+.integration-page .ie-hero-grid > * {
+  width: 100%;
+  min-width: 0;
+}
+
+.integration-page .ie-hero-copy {
+  width: 100%;
+  max-width: 1040px;
+  padding: 0;
+}
+
+.integration-page .ie-hero-copy h1 {
+  width: 100%;
+  max-width: 1080px;
+}
+
+.integration-page .ie-hero-copy .ie-lead {
+  width: 100%;
+  max-width: 1040px;
+}
+
+.integration-page :is(
+  .ic-hero-figure,
+  .ig-hero-visual,
+  .ie-hero-result,
+  .ie-source-map
+) {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+}
+
+@media (min-width: 640px) {
+  .integration-page .ie-hero {
+    padding-bottom: 80px;
+  }
+
+  .integration-page .ie-hero-grid {
+    gap: 48px;
+    margin-top: 36px;
+  }
+}
+
+@media (min-width: 1024px) {
+  .integration-page .ie-hero {
+    padding-bottom: 96px;
+  }
+
+  .integration-page .ie-hero-grid {
+    margin-top: 40px;
+  }
+}
+
+.ie-overview > .ie-container > h1 > span {
+  display: inline;
+  margin-top: 0;
+}
+
+/* Certified partner strip: align the logo area with the launched homepage. */
+.integration-page .ic-trust {
+  padding: 24px 0;
+  border-top: 0;
+  border-bottom: 0;
+  background: #f4f6f6;
+}
+
+.integration-page .ic-trust > .ie-container {
+  display: grid;
+  grid-template-columns: minmax(320px, 390px) minmax(0, 1fr);
+  align-items: center;
+  gap: 40px;
+}
+
+.integration-page .ic-trust-copy strong {
+  display: block;
+  max-width: 390px;
+  color: #10231c;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 24px;
+}
+
+.integration-page .ic-trust-copy p {
+  margin: 4px 0 0;
+  color: rgba(16, 35, 28, 0.55);
+  font-size: 11px;
+  line-height: 18px;
+}
+
+.integration-page .ic-trust-logos {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  align-items: stretch;
+}
+
+.integration-page .ic-trust-logos > div {
+  display: flex;
+  min-width: 0;
+  min-height: 64px;
+  align-items: center;
+  justify-content: center;
+  padding: 6px 20px;
+  border-left: 0.5px solid rgba(16, 35, 28, 0.12);
+}
+
+.integration-page .ic-trust-logos img {
+  display: block;
+  width: min(100%, 160px);
+  height: 52px;
+  object-fit: contain;
+}
+
+@media (max-width: 999px) {
+  .integration-page .ic-trust > .ie-container {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .integration-page .ic-trust-logos > div:first-child {
+    border-left: 0;
+  }
+}
+
+@media (max-width: 639px) {
+  .integration-page .ic-trust {
+    padding: 24px 0;
+  }
+
+  .integration-page .ic-trust-copy strong {
+    font-size: 14px;
+    line-height: 22px;
+  }
+
+  .integration-page .ic-trust-logos {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .integration-page .ic-trust-logos > div {
+    min-height: 58px;
+    padding: 8px 14px;
+  }
+
+  .integration-page .ic-trust-logos > div:nth-child(odd) {
+    border-left: 0;
+  }
+
+  .integration-page .ic-trust-logos > div:nth-child(n + 3) {
+    border-top: 0.5px solid rgba(16, 35, 28, 0.12);
+  }
+
+  .integration-page .ic-trust-logos img {
+    height: 46px;
+  }
+}
+
+/*
+ * Launched-homepage section system.
+ *
+ * The data-source templates already use .marrow-section-grid. AI-client
+ * templates need the same full wrapper so their rails stay continuous across
+ * section boundaries instead of restarting inside every section. Legacy
+ * detail sections keep the identical rule, dot and rail geometry.
+ */
+.integration-page {
+  background: rgb(251, 252, 252);
+  overflow-x: clip;
+}
+
+.integration-page :is(#claude-setup-template, #ai-client-template) {
+  --marrow-rail-inset: 20px;
+  position: relative;
+  margin-top: 20px;
+  background: rgb(251, 252, 252);
+}
+
+.integration-page .marrow-ruled-section {
+  border-top: 0.5px solid rgba(16, 35, 28, 0.1) !important;
+  background-color: rgb(251, 252, 252);
+}
+
+.integration-page .marrow-section-grid
+  > .marrow-ruled-section:first-child,
+.integration-page :is(#claude-setup-template, #ai-client-template)
+  > .marrow-ruled-section:first-child {
+  border-top: 0 !important;
+}
+
+.integration-page .marrow-section-grid
+  > .marrow-ruled-section:first-child::before,
+.integration-page .marrow-section-grid
+  > .marrow-ruled-section:first-child::after,
+.integration-page :is(#claude-setup-template, #ai-client-template)
+  > .marrow-ruled-section:first-child::before,
+.integration-page :is(#claude-setup-template, #ai-client-template)
+  > .marrow-ruled-section:first-child::after {
+  display: none;
+}
+
+.integration-page .ie-section {
+  position: relative;
+  border-top: 0.5px solid rgba(16, 35, 28, 0.1);
+  border-bottom: 0;
+  background-color: rgb(251, 252, 252);
+}
+
+/* Match the quiet pause between the ruled content system and homepage CTA. */
+.integration-page .ie-final {
+  box-sizing: border-box;
+  min-height: 286px;
+  margin-top: 38px;
+  padding: 54px 0;
+  border-top: 0;
+  border-bottom: 0.5px solid rgba(16, 35, 28, 0.1);
+  background: #fff url('./assets/product/marrow/Section.png') center / cover no-repeat;
+}
+
+@media (max-width: 1279px) {
+  .integration-page .ie-section::before,
+  .integration-page .ie-section::after {
+    display: none;
+  }
+}
+
+@media (min-width: 1280px) {
+  .integration-page :is(#claude-setup-template, #ai-client-template) {
+    --marrow-rail-inset: max(0px, calc((100% - 1264px) / 2));
+  }
+
+  .integration-page :is(#claude-setup-template, #ai-client-template)::before,
+  .integration-page :is(#claude-setup-template, #ai-client-template)::after {
+    content: '';
+    position: absolute;
+    z-index: 2;
+    top: 18px;
+    bottom: 0;
+    width: 0.5px;
+    background: rgba(16, 35, 28, 0.1);
+    pointer-events: none;
+  }
+
+  .integration-page :is(#claude-setup-template, #ai-client-template)::before {
+    left: var(--marrow-rail-inset);
+  }
+
+  .integration-page :is(#claude-setup-template, #ai-client-template)::after {
+    right: var(--marrow-rail-inset);
+  }
+
+  .integration-page .ie-section::before,
+  .integration-page .ie-section::after {
+    top: -9px;
+    bottom: 0;
+    width: 18px;
+    height: auto;
+    z-index: 3;
+    background:
+      radial-gradient(circle at center, rgba(16, 35, 28, 0.65) 0 1px, transparent 1.1px)
+        top / 18px 18px no-repeat,
+      linear-gradient(#fbfcfc, #fbfcfc) top / 18px 18px no-repeat,
+      linear-gradient(rgba(16, 35, 28, 0.1), rgba(16, 35, 28, 0.1))
+        center / 0.5px 100% no-repeat;
+    pointer-events: none;
+  }
+
+  .integration-page .ie-section::before {
+    left: calc(max(0px, calc((100% - 1264px) / 2)) - 9px);
+  }
+
+  .integration-page .ie-section::after {
+    right: calc(max(0px, calc((100% - 1264px) / 2)) - 9px);
+    left: auto;
+  }
+}
+
+/* Figma 124:3433 — process cards. Keep each page's existing copy intact. */
+.integration-page
+  .marrow-ruled-section
+  > div
+  > ol.mt-10.grid.gap-3 {
+  gap: 12px;
+}
+
+.integration-page
+  .marrow-ruled-section
+  > div
+  > ol.mt-10.grid.gap-3
+  > li {
+  display: flex !important;
+  min-height: 205px !important;
+  flex-direction: column;
+  padding: 24px 22.5px 20px !important;
+  overflow: hidden;
+  border: 0.5px solid rgba(16, 35, 28, 0.14) !important;
+  border-radius: 16px !important;
+  background: #f4f6f6 !important;
+  box-shadow: none;
+}
+
+.integration-page
+  .marrow-ruled-section
+  > div
+  > ol.mt-10.grid.gap-3
+  > li::before {
+  display: none;
+}
+
+.integration-page
+  .marrow-ruled-section
+  > div
+  > ol.mt-10.grid.gap-3
+  > li
+  > span:first-child {
+  display: inline-flex !important;
+  width: max-content;
+  align-items: center;
+  gap: 9px;
+  padding: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  color: rgba(16, 35, 28, 0.65) !important;
+  font-family: var(--hg-mono) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  line-height: 17.38px !important;
+  letter-spacing: 1px !important;
+  text-transform: none !important;
+}
+
+.integration-page
+  .marrow-ruled-section
+  > div
+  > ol.mt-10.grid.gap-3
+  > li
+  > h3 {
+  margin-top: auto !important;
+  color: #10231c !important;
+  font-family: var(--hg-font) !important;
+  font-size: 20px !important;
+  font-weight: 500 !important;
+  line-height: 32px !important;
+  letter-spacing: -1px !important;
+}
+
+.integration-page
+  .marrow-ruled-section
+  > div
+  > ol.mt-10.grid.gap-3
+  > li
+  > p {
+  margin-top: 6px !important;
+  color: #68756f !important;
+  font-family: var(--hg-font) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 18px !important;
+  letter-spacing: 0 !important;
+}
+
+@media (hover: hover) {
+  .integration-page
+    .marrow-ruled-section
+    > div
+    > ol.mt-10.grid.gap-3
+    > li:hover,
+  .integration-page
+    .marrow-ruled-section
+    > div
+    > ol.mt-10.grid.gap-3
+    > li:focus-within {
+    border-color: rgba(16, 35, 28, 0.14);
+    box-shadow: none;
+  }
+}
+
+/* Shared secondary-page FAQ: one full-width, exclusive accordion. */
+.integration-page #faq {
+  box-sizing: border-box;
+  padding-top: 68px !important;
+  padding-bottom: 82px !important;
+  background-color: rgb(251, 252, 252);
+}
+
+.integration-page #faq > div {
+  display: flex;
+  width: 100%;
+  max-width: 1180px;
+  flex-direction: column;
+  gap: 30px;
+  margin-inline: auto;
+}
+
+/* Legacy pages keep gutters inside .ie-container; 1260px yields 1180px of content. */
+.integration-page #faq > .ie-container {
+  max-width: 1260px;
+}
+
+.integration-page #faq > div > div:first-child {
+  display: flex;
+  width: 100%;
+  max-width: none;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin: 0;
+  padding-top: 8.31px;
+}
+
+.integration-page #faq > div > div:first-child > p:first-child {
+  margin: 0 !important;
+  color: rgba(16, 35, 28, 0.65) !important;
+  font-family: var(--hg-mono) !important;
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  line-height: 17.38px !important;
+  letter-spacing: 1px !important;
+}
+
+.integration-page #faq > div > div:first-child > h2 {
+  width: 100%;
+  margin: 0 !important;
+  color: var(--hg-ink) !important;
+  font-family: var(--hg-font) !important;
+  font-size: clamp(32px, 3vw, 36px) !important;
+  font-weight: 600 !important;
+  line-height: 50px !important;
+  letter-spacing: normal !important;
+}
+
+.integration-page #faq > div > div:first-child > p:not(:first-child) {
+  max-width: 760px;
+  margin: 0 !important;
+  padding-top: 2px;
+  color: var(--hg-muted) !important;
+  font-family: var(--hg-font) !important;
+  font-size: 16px !important;
+  font-weight: 400 !important;
+  line-height: 26px !important;
+  letter-spacing: 0 !important;
+}
+
+.integration-page #faq .ie-faq-grid {
+  display: block;
+  width: 100%;
+}
+
+.integration-page #faq .ie-faq-grid > div:first-child {
+  display: none;
+}
+
+.integration-page #faq .ie-faq-list {
+  width: 100%;
+}
+
+.integration-page #faq details {
+  border-top: 0.5px solid rgba(16, 35, 28, 0.14) !important;
+  border-bottom: 0 !important;
+}
+
+.integration-page #faq details:last-child {
+  border-bottom: 0.5px solid rgba(16, 35, 28, 0.14) !important;
+}
+
+.integration-page #faq summary {
+  box-sizing: border-box;
+  display: flex !important;
+  min-height: 66px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 16px 6px !important;
+  color: var(--hg-ink) !important;
+  font-family: var(--hg-font) !important;
+  font-size: 16px !important;
+  font-weight: 500 !important;
+  line-height: 26px !important;
+  text-align: left;
+  list-style: none;
+  cursor: pointer;
+}
+
+.integration-page #faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.integration-page #faq summary > span:first-child:not(:last-child) {
+  min-width: 0;
+  flex: 1;
+}
+
+.integration-page #faq summary > span:last-child {
+  box-sizing: border-box;
+  display: grid !important;
+  position: relative;
+  width: 30px !important;
+  height: 30px !important;
+  flex: 0 0 30px;
+  place-items: center;
+  overflow: hidden;
+  border: 0.5px solid rgba(16, 35, 28, 0.14) !important;
+  border-radius: 4px !important;
+  background: rgb(251, 252, 252) !important;
+  color: var(--hg-ink) !important;
+  font-size: 0 !important;
+  transform: none !important;
+}
+
+.integration-page #faq summary > span:last-child img {
+  display: none;
+}
+
+.integration-page #faq summary > span:last-child::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: url("./assets/product/marrow/faq-expand-arrow.png") center / 20px 20px no-repeat;
+  transform: translate(-50%, -50%);
+  transform-origin: center;
+  transition: transform 160ms ease;
+}
+
+.integration-page #faq details[open] summary > span:last-child::before {
+  transform: translate(-50%, -50%) rotate(180deg);
+}
+
+.integration-page #faq details > p,
+.integration-page #faq details > summary + div {
+  box-sizing: border-box;
+  max-width: 646px;
+  padding: 0 24px 12px 6px !important;
+}
+
+.integration-page #faq details > p,
+.integration-page #faq details > summary + div > p {
+  margin: 0 !important;
+  color: var(--hg-muted) !important;
+  font-family: var(--hg-font) !important;
+  font-size: 12px !important;
+  font-weight: 400 !important;
+  line-height: 18px !important;
+  letter-spacing: 0 !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .integration-page #faq summary > span:last-child::before {
+    transition: none;
   }
 }
