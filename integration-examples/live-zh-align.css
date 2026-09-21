@@ -190,6 +190,33 @@ header.static-header .static-nav a[aria-current="page"] {
   color: rgba(23, 62, 54, 0.65);
 }
 
+@media (max-width: 480px) {
+  header.static-header > div {
+    gap: 6px;
+    padding-inline: 10px;
+  }
+
+  header.static-header .static-logo {
+    margin-right: 0;
+  }
+
+  .static-logo img {
+    height: 24px;
+  }
+
+  .static-languages {
+    width: 64px;
+    min-width: 64px;
+    flex: none;
+  }
+
+  header.static-header .static-cta {
+    flex: none;
+    padding-inline: 8px;
+    font-size: 11px;
+  }
+}
+
 .static-cta {
   display: inline-flex;
   height: 36px;
